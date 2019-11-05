@@ -1,0 +1,104 @@
+<div class="container">  
+  
+  <mat-card>  
+    <mat-toolbar color="accent">  
+      <div align="center" style="color:white;text-align: right;">  
+        AdventureWorks 2017  
+      </div>    
+    </mat-toolbar>  
+  <br><br>  
+    <mat-card-content>  
+      <form [formGroup]="productForm"(ngSubmit)="onFormSubmit(productForm.value)">  
+              <table>  
+                <tr>  
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="Name" matTooltip="Enter product Name" matInput placeholder="product Name">  
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!productForm.get('Name').value && productForm.get('Name').touched"></span>  
+                    </mat-error>  
+                  </td>  
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="ProductNumber" matTooltip="Enter product Number" matInput placeholder="product Number"> 
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!productForm.get('ProductNumber').value && productForm.get('ProductNumber').touched"></span>  
+                    </mat-error>  
+                  </td>  
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="Color" matTooltip="Enter product Color" matInput placeholder="product Color"> 
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!productForm.get('Color').value && productForm.get('Color').touched"></span>  
+                    </mat-error>
+                  </td>  
+                </tr>  
+                <tr>  
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="StandardCost" matTooltip="Enter product StandardCost" matInput placeholder="product StandardCost"> 
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!productForm.get('StandardCost').value && productForm.get('StandardCost').touched"></span>  
+                    </mat-error>
+                  </td> 
+                  <td class="tbl1">  
+                    <mat-form-field class="demo-full-width">  
+                      <input formControlName="ListPrice" matTooltip="Enter product ListPrice" matInput placeholder="product ListPrice"> 
+                    </mat-form-field>  
+                    <mat-error>  
+                      <span *ngIf="!productForm.get('ListPrice').value && productForm.get('ListPrice').touched"></span>  
+                    </mat-error>
+                  </td>
+                  <td class="tbl1">  
+                    
+                  </td>  
+                </tr>  
+                <tr>  
+                  <td></td>  
+                  <td  class="content-center">  
+                    <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!productForm.valid">Submit</button>      
+                    <button type="reset" mat-raised-button color="accent"matTooltip="Click Reset Button" (click)="resetForm()">Reset</button>  
+                  </td>  
+                  <td>  
+                    <p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">  
+                      {{massage}}  
+                    </p>  
+                  </td>  
+                </tr>  
+              </table>  
+        <br><br>  
+        <table class="table" >  
+            <tr ngclass="btn-primary">  
+              <th class="tbl2">ID</th>  
+              <th class="tbl2">Name</th>  
+              <th class="tbl2">Number</th>  
+              <th class="tbl2">Color</th>  
+              <th class="tbl2">StandardCost</th>  
+              <th class="tbl2">ListPrice</th>  
+              <th class="tbl2">Edit</th>  
+              <th class="tbl2">Delete</th>  
+            </tr>  
+            <tr *ngFor="let product of allProducts | async">  
+              <td class="tbl2">{{product.ProductID}}</td>  
+              <td class="tbl2">{{product.Name}}</td>  
+              <td class="tbl2">{{product.ProductNumber}}</td>  
+              <td class="tbl2">{{product.Color}}</td>  
+              <td class="tbl2">{{product.StandardCost}}</td>  
+              <td class="tbl2">{{product.ListPrice}}</td>  
+              <td class="tbl2">
+                  <button matTooltip="Click Edit Button" (click)="loadProductToEdit(product.ProductID)" _ngcontent-ivy-c224="" mat-stroked-button="" color="accent" class="mat-stroked-button mat-button-base mat-accent"><span class="mat-button-wrapper">Edit</span><div matripple="" class="mat-button-ripple mat-ripple"></div><div class="mat-button-focus-overlay"></div></button>  
+              </td>  
+              <td class="tbl2"> 
+                  <button matTooltip="Click Delete Button" (click)="deleteProduct(product.ProductID)" _ngcontent-ivy-c224="" mat-stroked-button="" color="accent" class="mat-stroked-button mat-button-base mat-accent"><span class="mat-button-wrapper">Delete</span><div matripple="" class="mat-button-ripple mat-ripple"></div><div class="mat-button-focus-overlay"></div></button>
+              </td>  
+            </tr>  
+    
+          </table>  
+      </form>  
+    </mat-card-content>  
+  </mat-card>  
+  </div>  
